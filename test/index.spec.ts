@@ -18,7 +18,7 @@ describe('creates objects', () => {
 	});
 
 	beforeEach(async () => {
-		createdBy = new Person({id: 'person:1'});
+		createdBy = new Person({id: 'person:1', email: 'foo@bar.com'});
 		await orm.em.persistAndFlush(createdBy);
 	});
 
@@ -31,9 +31,13 @@ describe('creates objects', () => {
 		await orm.em.persistAndFlush(thing);
 		assert.strictEqual(thing.createdBy.id, 'person:1');
 
-		const fork = orm.em.fork();
-		const thing1 = await fork.findOne(Thing, {id: 'thing:1'});
+		orm.em.clear();
+
+		const thing1 = await orm.em.findOne(Thing, {id: 'thing:1'},
+			{populate: ['createdBy']});
+
 		assert.strictEqual(thing1!.id, 'thing:1');
 		assert.strictEqual(thing1!.createdBy.id, 'person:1');
+		assert.strictEqual(thing1!.createdBy.unwrap().email, 'foo@bar.com');
 	});
 });
