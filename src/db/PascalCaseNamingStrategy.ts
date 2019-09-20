@@ -1,6 +1,6 @@
 import {AbstractNamingStrategy} from "mikro-orm";
 
-class PascalCaseNamingStrategy extends AbstractNamingStrategy {
+export class PascalCaseNamingStrategy extends AbstractNamingStrategy {
 
 	classToTableName(entityName: string): string {
 		return entityName;
@@ -27,16 +27,4 @@ class PascalCaseNamingStrategy extends AbstractNamingStrategy {
 	}
 
 }
-
-export = {
-	baseDir: __dirname, // defaults to `process.cwd()`,
-	entitiesDirs: ['../build/model/'],
-	entitiesDirsTs: ['./model/'],
-	debug: true,
-	type: 'sqlite',
-	dbName: 'build/test.sqlite',
-	warnWhenNoEntities: true,
-	cache: { enabled: false },
-	namingStrategy: PascalCaseNamingStrategy,
-};
 

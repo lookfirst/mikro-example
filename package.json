@@ -24,8 +24,8 @@
   "mikro-orm": {
     "useTsNode": true,
     "configPaths": [
-      "./src/cli-config.ts",
-      "./build/cli-config.js"
+      "./src/db/cli-config.ts",
+      "./build/src/db/cli-config.js"
     ]
   }
 }

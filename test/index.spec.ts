@@ -1,10 +1,10 @@
 import * as assert from "assert";
 import {MikroORM} from "mikro-orm";
 
-import {Person} from "../src/model/Person";
-import {Thing} from "../src/model/Thing";
+import {Person} from "../src/db/model/Person";
+import {Thing} from "../src/db/model/Thing";
 
-import config from '../src/cli-config';
+import config from '../src/db/cli-config';
 
 describe('creates objects', () => {
 	let createdBy : Person;
