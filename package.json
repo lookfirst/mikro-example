@@ -1,0 +1,31 @@
+{
+  "name": "mikro-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "@types/lodash": "*",
+    "@types/mocha": "*",
+    "@types/node": "*",
+    "chai": "*",
+    "lodash": "*",
+    "mikro-orm": "^3.0.0-alpha.8",
+    "mocha": "*",
+    "pg": "*",
+    "reflect-metadata": "*",
+    "sqlite3": "*",
+    "ts-node": "*",
+    "tslib": "*",
+    "typescript": "*"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/cli-config.ts",
+      "./build/cli-config.js"
+    ]
+  }
+}
