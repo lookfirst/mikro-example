@@ -1,3 +1,4 @@
+import {Options} from "mikro-orm";
 import {PascalCaseNamingStrategy} from "./PascalCaseNamingStrategy";
 
 export default {
@@ -10,4 +11,4 @@ export default {
 	warnWhenNoEntities: true,
 	cache: { enabled: false },
 	namingStrategy: PascalCaseNamingStrategy,
-};
+} as Partial<Options>;

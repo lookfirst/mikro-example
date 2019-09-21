@@ -11,7 +11,7 @@ describe('creates objects', () => {
 	let orm: MikroORM;
 
 	before(async () => {
-		orm = await MikroORM.init(config);
+		orm = await MikroORM.init(config as any);
 		const generator = orm.getSchemaGenerator();
 		await generator.dropSchema();
 		await generator.createSchema();
