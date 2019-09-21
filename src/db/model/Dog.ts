@@ -1,4 +1,5 @@
-import {Entity, IEntity, ManyToOne, PrimaryKey} from "mikro-orm";
+import {Entity, IEntity, ManyToOne, OneToOne, PrimaryKey} from "mikro-orm";
+import {Person} from "./Person";
 import {Thing} from "./Thing";
 
 @Entity()
@@ -8,6 +9,9 @@ export class Dog {
 
 	@ManyToOne()
 	thing!: Thing;
+
+	@OneToOne({entity: () => Person, inversedBy: 'dog'})
+	person!: Person;
 }
 
 export interface Dog extends IEntity<number> { }

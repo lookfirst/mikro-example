@@ -47,4 +47,17 @@ describe('creates dogs', () => {
 		const thing1 = await orm.em.findOne(Thing, {id: thing.id});
 		assert.strictEqual((await thing1!.dogs.init()).length, 2);
 	});
+
+	it('creates a dog with an owner', async () => {
+		const person = new Person({id: 'person:1', email: 'foo@bar.com'});
+		const dog = new Dog();
+		person.dog = dog;
+		
+		await orm.em.persistAndFlush(person);
+
+		orm.em.clear();
+
+		const dog1 = await orm.em.findOne(Dog, {id: dog.id});
+		assert.strictEqual((await dog1!.person.init()).id, person.id);
+	});
 });
