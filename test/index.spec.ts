@@ -40,4 +40,23 @@ describe('creates objects', () => {
 		assert.strictEqual(thing1!.createdBy.id, 'person:1');
 		assert.strictEqual(thing1!.createdBy.unwrap().email, 'foo@bar.com');
 	});
+
+	it('creates a thing with createdBy relation through assign', async () => {
+		const thing = new Thing({id: 'thing:1'}, createdBy);
+		thing.assign({field: 'a field'});
+
+		await orm.em.persistAndFlush(thing);
+		assert.strictEqual(thing.createdBy.id, 'person:1');
+
+		orm.em.clear();
+
+		const thing1 = await orm.em.findOne(Thing, {id: 'thing:1'},
+			{populate: ['createdBy']});
+
+		assert.strictEqual(thing1!.id, 'thing:1');
+		assert.strictEqual(thing1!.createdBy.id, 'person:1');
+		assert.strictEqual(thing1!.createdBy.unwrap().email, 'foo@bar.com');
+
+		assert.strictEqual(thing1!.field, 'a field');
+	});
 });
