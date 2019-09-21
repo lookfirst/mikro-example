@@ -1,4 +1,15 @@
-import {Entity, IdentifiedReference, IEntity, ManyToOne, PrimaryKey, Property, Reference} from "mikro-orm";
+import {
+	Collection,
+	Entity,
+	IdentifiedReference,
+	IEntity,
+	ManyToOne,
+	OneToMany,
+	PrimaryKey,
+	Property,
+	Reference
+} from "mikro-orm";
+import {Dog} from "./Dog";
 import {Person} from "./Person";
 
 @Entity()
@@ -12,6 +23,9 @@ export class Thing {
 
 	@ManyToOne()
 	createdBy: IdentifiedReference<Person, 'id'>;
+
+	@OneToMany({entity: () => Dog, mappedBy: 'thing'})
+	dogs = new Collection<Dog>(this);
 
 	constructor(thing: Partial<Thing>, createdBy: Person) {
 		this.id = thing.id!;

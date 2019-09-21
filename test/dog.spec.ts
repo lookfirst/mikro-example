@@ -3,6 +3,8 @@ import {MikroORM} from "mikro-orm";
 import {Dog} from "../src/db/model/Dog";
 
 import config from '../src/db/cli-config';
+import {Person} from "../src/db/model/Person";
+import {Thing} from "../src/db/model/Thing";
 
 describe('creates dogs', () => {
 	let orm: MikroORM;
@@ -26,5 +28,23 @@ describe('creates dogs', () => {
 
 		const dog1 = await orm.em.findOne(Dog, {id: dog.id});
 		assert.strictEqual(dog1!.id, 1);
+	});
+
+	it('thing has many dogs', async () => {
+		const createdBy = new Person({id: 'person:1', email: 'foo@bar.com'});
+		await orm.em.persistAndFlush(createdBy);
+
+		const dog1 = new Dog();
+		const dog2 = new Dog();
+
+		const thing = new Thing({id: 'thing1', field: 'field1'}, createdBy);
+		thing.dogs.add(dog1, dog2);
+
+		await orm.em.persistAndFlush(thing);
+
+		orm.em.clear();
+
+		const thing1 = await orm.em.findOne(Thing, {id: thing.id});
+		assert.strictEqual((await thing1!.dogs.init()).length, 2);
 	});
 });
