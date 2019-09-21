@@ -9,7 +9,7 @@ export class Person {
 	@Property({columnType: 'varchar'})
 	email: string;
 
-	@OneToOne({owner: true, nullable: true})
+	@OneToOne({ entity: () => Dog, inversedBy: 'person' })
 	dog: Dog;
 
 	constructor(person: Partial<Person>) {
