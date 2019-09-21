@@ -1,6 +1,6 @@
 import {PascalCaseNamingStrategy} from "./PascalCaseNamingStrategy";
 
-export = {
+export default {
 	baseDir: __dirname, // defaults to `process.cwd()`,
 	entitiesDirs: ['../../build/db/model'],
 	entitiesDirsTs: ['./model'],

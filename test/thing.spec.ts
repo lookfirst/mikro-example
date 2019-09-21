@@ -57,6 +57,8 @@ describe('creates objects', () => {
 		assert.strictEqual(thing1!.createdBy.id, 'person:1');
 		assert.strictEqual(thing1!.createdBy.unwrap().email, 'foo@bar.com');
 
+		assert.strictEqual((await thing1!.createdBy.load()).email, 'foo@bar.com');
+
 		assert.strictEqual(thing1!.field, 'a field');
 	});
 });
