@@ -951,9 +951,9 @@ getpass@^0.1.1:
     assert-plus "^1.0.0"
 
 glob-parent@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.0.0.tgz#1dc99f0f39b006d3e92c2c284068382f0c20e954"
-  integrity sha512-Z2RwiujPRGluePM6j699ktJYxmPpJKCfpGA13jz2hmFZC7gKetzrWvg5KN3+OsIFmydGyZ1AVwERCq1w/ZZwRg==
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/glob-parent/-/glob-parent-5.1.0.tgz#5f4c1d1e748d30cd73ad2944b3577a81b081e8c2"
+  integrity sha512-qjtRgnIVmOfnKUE3NJAQEdk+lKrxfw8t5ke7SXtfMTHcjsBfOfWXCQfdb30zfDoZQ2IRSIiidmjtbHZPZ++Ihw==
   dependencies:
     is-glob "^4.0.1"
 
@@ -1579,9 +1579,9 @@ micromatch@^4.0.2:
     picomatch "^2.0.5"
 
 mikro-orm@^3.0.0-alpha.8:
-  version "3.0.0-alpha.8"
-  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-3.0.0-alpha.8.tgz#13640a7927cbfcba7bae90907d07d788ddca156e"
-  integrity sha512-zM2GdYtcA/5xX1BbojGvOkN+pQ+/E6WTutJzmRYrbAWwil0PbgZ6UGCoz7ZtPhS44cwmFGIINPRyDO0Wkz6kXg==
+  version "3.0.0-alpha.10"
+  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-3.0.0-alpha.10.tgz#8f03a7173f469bf26e782b6866831926fdd7e8cd"
+  integrity sha512-JxHSUkk7jrLF8VypOPXeSzOeqqTdMqMh7bdm8rNViiyx5ex52BftqEbBksikNFxlGIdfMRf0j83iVhWlzavJ8g==
   dependencies:
     chalk "^2.4.2"
     cli-highlight "^2.1.1"

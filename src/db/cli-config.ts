@@ -1,5 +1,4 @@
-import {Options} from "mikro-orm";
-import {PascalCaseNamingStrategy} from "./PascalCaseNamingStrategy";
+import {EntityCaseNamingStrategy, Options} from "mikro-orm";
 
 export default {
 	baseDir: __dirname, // defaults to `process.cwd()`,
@@ -10,5 +9,5 @@ export default {
 	dbName: './build/test.sqlite',
 	warnWhenNoEntities: true,
 	cache: { enabled: false },
-	namingStrategy: PascalCaseNamingStrategy,
+	namingStrategy: EntityCaseNamingStrategy,
 } as Partial<Options>;
