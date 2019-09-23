@@ -61,7 +61,7 @@ describe('creates dogs', () => {
 
 		orm.em.clear();
 
-		const dog1 = await orm.em.findOne(Dog, {id: dog.id});
-		assert.strictEqual((await dog1!.person!.init()).id, person.id);
+		const dog1 = await orm.em.findOne(Dog, {id: dog.id}, ['person']);
+		assert.strictEqual(dog1!.person!.id, person.id);
 	});
 });
