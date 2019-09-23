@@ -1,5 +1,5 @@
 import * as assert from "assert";
-import {MikroORM} from "mikro-orm";
+import {MikroORM, SchemaGenerator} from "mikro-orm";
 
 import {Person} from "../src/db/model/Person";
 import {Thing} from "../src/db/model/Thing";
@@ -9,15 +9,17 @@ import config from '../src/db/cli-config';
 describe('creates objects', () => {
 	let createdBy : Person;
 	let orm: MikroORM;
+	let generator: SchemaGenerator;
 
 	before(async () => {
-		orm = await MikroORM.init(config as any);
-		const generator = orm.getSchemaGenerator();
-		await generator.dropSchema();
-		await generator.createSchema();
+		orm = await MikroORM.init(config);
+		generator = orm.getSchemaGenerator();
 	});
 
 	beforeEach(async () => {
+		await generator.dropSchema();
+		await generator.createSchema();
+
 		createdBy = new Person({id: 'person:1', email: 'foo@bar.com'});
 		await orm.em.persistAndFlush(createdBy);
 	});

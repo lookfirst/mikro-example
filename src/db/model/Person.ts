@@ -9,12 +9,13 @@ export class Person {
 	@Property({columnType: 'varchar'})
 	email: string;
 
-	@OneToOne({inversedBy: 'person', mappedBy: 'person'})
+	@OneToOne(() => Dog, dog => dog.person, {owner: true})
 	dog!: Dog;
 
 	constructor(person: Partial<Person>) {
 		this.id = person.id!;
 		this.email = person.email!;
+		this.dog = person.dog!;
 	}
 }
 

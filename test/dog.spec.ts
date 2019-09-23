@@ -1,17 +1,22 @@
 import * as assert from "assert";
-import {MikroORM} from "mikro-orm";
+import {MikroORM, SchemaGenerator} from "mikro-orm";
 import {Dog} from "../src/db/model/Dog";
 
-import config from '../src/db/cli-config';
 import {Person} from "../src/db/model/Person";
 import {Thing} from "../src/db/model/Thing";
 
+import config from '../src/db/cli-config';
+
 describe('creates dogs', () => {
 	let orm: MikroORM;
+	let generator: SchemaGenerator;
 
 	before(async () => {
-		orm = await MikroORM.init(config as any);
-		const generator = orm.getSchemaGenerator();
+		orm = await MikroORM.init(config);
+		generator = orm.getSchemaGenerator();
+	});
+
+	beforeEach(async () => {
 		await generator.dropSchema();
 		await generator.createSchema();
 	});
@@ -49,16 +54,15 @@ describe('creates dogs', () => {
 	});
 
 	it('creates a dog with an owner', async () => {
-		const person = new Person({id: 'person:1', email: 'foo@bar.com'});
 		const dog = new Dog();
-		person.dog = dog;
+		const person = new Person({id: 'person:1', email: 'foo@bar.com', dog});
 		dog.person = person;
 
 		await orm.em.persistAndFlush(person);
 
 		orm.em.clear();
 
-		const dog1 = await orm.em.findOne(Dog, {id: dog.id});
+		const dog1 = await orm.em.findOne(Dog, {id: dog.id}, ['person']);
 		assert.strictEqual((await dog1!.person!.init()).id, person.id);
 	});
 });

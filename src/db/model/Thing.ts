@@ -18,7 +18,7 @@ export class Thing {
 	@PrimaryKey()
 	id: string;
 
-	@Property()
+	@Property({nullable: true})
 	field: string;
 
 	@ManyToOne()

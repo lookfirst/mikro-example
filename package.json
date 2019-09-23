@@ -19,13 +19,12 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "./node_modules/.bin/mocha"
+    "test": "./node_modules/.bin/mocha --require ts-node/register"
   },
   "mikro-orm": {
     "useTsNode": true,
     "configPaths": [
-      "./src/db/cli-config.ts",
-      "./build/src/db/cli-config.js"
+      "./src/db/cli-config.ts"
     ]
   }
 }

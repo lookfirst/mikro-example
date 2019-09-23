@@ -10,7 +10,7 @@ export class Dog {
 	@ManyToOne()
 	thing!: Thing;
 
-	@OneToOne({inversedBy: 'dog', mappedBy: 'dog'})
+	@OneToOne(() => Person, person => person.dog)
 	person!: Person;
 }
 
