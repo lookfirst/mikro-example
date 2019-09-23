@@ -9,7 +9,7 @@
     "@types/node": "*",
     "chai": "*",
     "lodash": "*",
-    "mikro-orm": "^3.0.0-alpha.8",
+    "mikro-orm": "^3.0.0-alpha.13",
     "mocha": "*",
     "pg": "*",
     "reflect-metadata": "*",
