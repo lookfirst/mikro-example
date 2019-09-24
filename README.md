@@ -1,3 +1,8 @@
 # mikro-example
 
-Simple testbed for setting up [mikro](https://github.com/mikro-orm/mikro-orm) with mocha for unit testing.
+Example of setting up [mikro](https://github.com/mikro-orm/mikro-orm) with jest for unit testing.
+
+```sh
+yarn
+yarn test
+```

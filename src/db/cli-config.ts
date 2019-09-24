@@ -5,6 +5,7 @@ export default {
 	entitiesDirs: ['./build/src/db/model'],
 	entitiesDirsTs: ['./src/db/model'],
 	debug: true,
+	tsNode: true,
 	type: 'sqlite',
 	dbName: './build/test.sqlite',
 	cache: { enabled: false },

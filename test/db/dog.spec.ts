@@ -1,17 +1,16 @@
-import * as assert from "assert";
 import {MikroORM, SchemaGenerator} from "mikro-orm";
-import {Dog} from "../src/db/model/Dog";
+import {Dog} from "../../src/db/model/Dog";
 
-import {Person} from "../src/db/model/Person";
-import {Thing} from "../src/db/model/Thing";
+import {Person} from "../../src/db/model/Person";
+import {Thing} from "../../src/db/model/Thing";
 
-import config from '../src/db/cli-config';
+import config from '../../src/db/cli-config';
 
 describe('creates dogs', () => {
 	let orm: MikroORM;
 	let generator: SchemaGenerator;
 
-	before(async () => {
+	beforeAll(async () => {
 		orm = await MikroORM.init(config);
 		generator = orm.getSchemaGenerator();
 	});
@@ -21,21 +20,21 @@ describe('creates dogs', () => {
 		await generator.createSchema();
 	});
 
-	after(async () => {
+	afterAll(async () => {
 		await orm.close();
 	});
 
-	it('creates a dog', async () => {
+	test('creates a dog', async () => {
 		const dog = new Dog();
 		await orm.em.persistAndFlush(dog);
 
 		orm.em.clear();
 
 		const dog1 = await orm.em.findOne(Dog, {id: dog.id});
-		assert.strictEqual(dog1!.id, 1);
+		expect(dog1!.id).toBe(1);
 	});
 
-	it('thing has many dogs', async () => {
+	test('thing has many dogs', async () => {
 		const createdBy = new Person({id: 'person:1', email: 'foo@bar.com'});
 		await orm.em.persistAndFlush(createdBy);
 
@@ -50,10 +49,10 @@ describe('creates dogs', () => {
 		orm.em.clear();
 
 		const thing1 = await orm.em.findOne(Thing, {id: thing.id});
-		assert.strictEqual((await thing1!.dogs.init()).length, 2);
+		expect((await thing1!.dogs.init()).length).toBe(2);
 	});
 
-	it('creates a dog with an owner', async () => {
+	test('creates a dog with an owner', async () => {
 		const dog = new Dog();
 		const person = new Person({id: 'person:1', email: 'foo@bar.com', dog});
 
@@ -62,6 +61,6 @@ describe('creates dogs', () => {
 		orm.em.clear();
 
 		const dog1 = await orm.em.findOne(Dog, {id: dog.id}, ['person']);
-		assert.strictEqual(dog1!.person!.id, person.id);
+		expect(dog1!.person!.id).toEqual(person.id);
 	});
 });
