@@ -24,13 +24,17 @@ export class Thing {
 	@ManyToOne()
 	createdBy: IdentifiedReference<Person, 'id'>;
 
-	@OneToMany({entity: () => Dog, mappedBy: 'thing'})
+	@ManyToOne()
+	owner!: Person;
+
+	@OneToMany(() => Dog, (dog) => dog.thing)
 	dogs = new Collection<Dog>(this);
 
 	constructor(thing: Partial<Thing>, createdBy: Person) {
 		this.id = thing.id!;
 		this.field = thing.field!;
 		this.createdBy = Reference.create(createdBy);
+		this.owner = thing.owner!;
 	}
 }
 
