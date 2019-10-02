@@ -31,7 +31,10 @@ describe('creates and selects', () => {
 		a.b = b;
 		await orm.em.persistAndFlush(a);
 
+		orm.em.clear();
+
 		const foundB = await orm.em.findOneOrFail(B, 1, ['a']);
+
 		expect(foundB.a.id).toBe(1);
 	});
 
@@ -43,6 +46,8 @@ describe('creates and selects', () => {
 
 		a.b = b;
 		await orm.em.persistAndFlush(a);
+
+		orm.em.clear();
 
 		const foundB = await orm.em.findOneOrFail(B, 1, {populate: true});
 		expect(foundB.a.id).toBe(1);
