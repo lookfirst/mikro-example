@@ -60,7 +60,17 @@ describe('creates dogs', () => {
 
 		orm.em.clear();
 
-		const dog1 = await orm.em.findOne(Dog, {id: dog.id}, ['person']);
+		const dog1 = await orm.em.findOne(Dog, dog.id, ['person']);
 		expect(dog1!.person!.id).toEqual(person.id);
+
+		orm.em.clear();
+
+		const person1 = await orm.em.findOne(Person, person.id, ['dog']);
+		expect(person1!.dog.id).toEqual(dog1!.id);
+
+		orm.em.clear();
+
+		const person2 = await orm.em.findOne(Person, person.id, true);
+		expect(person2!.dog.id).toEqual(dog1!.id);
 	});
 });
