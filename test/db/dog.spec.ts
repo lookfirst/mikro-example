@@ -4,7 +4,7 @@ import {Dog} from "../../src/db/model/Dog";
 import {Person} from "../../src/db/model/Person";
 import {Thing} from "../../src/db/model/Thing";
 
-import config from '../../src/db/cli-config';
+import config, {dbTmpFile} from '../../src/db/cli-config';
 
 describe('creates dogs', () => {
 	let orm: MikroORM;
@@ -22,6 +22,7 @@ describe('creates dogs', () => {
 
 	afterAll(async () => {
 		await orm.close();
+		dbTmpFile.removeCallback();
 	});
 
 	test('creates a dog', async () => {

@@ -1,4 +1,4 @@
-import {Entity, IEntity, OneToOne, PrimaryKey, Property} from "mikro-orm";
+import {Entity, OneToOne, PrimaryKey, Property} from "mikro-orm";
 import {Dog} from "./Dog";
 
 @Entity()
@@ -18,5 +18,3 @@ export class Person {
 		this.dog = person.dog!;
 	}
 }
-
-export interface Person extends IEntity<string> { }

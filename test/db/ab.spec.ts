@@ -2,13 +2,14 @@ import {MikroORM, SchemaGenerator} from "mikro-orm";
 import {A} from "../../src/db/model/A";
 import {B} from "../../src/db/model/B";
 
-import config from '../../src/db/cli-config';
+import config, {dbTmpFile} from '../../src/db/cli-config';
 
 describe('creates and selects', () => {
 	let orm: MikroORM;
 	let generator: SchemaGenerator;
 
 	beforeAll(async () => {
+
 		orm = await MikroORM.init(config);
 		generator = orm.getSchemaGenerator();
 	});
@@ -20,6 +21,7 @@ describe('creates and selects', () => {
 
 	afterAll(async () => {
 		await orm.close();
+		dbTmpFile.removeCallback();
 	});
 
 	test('creates and selects', async () => {

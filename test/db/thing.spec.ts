@@ -1,9 +1,9 @@
-import {MikroORM, SchemaGenerator} from "mikro-orm";
+import {MikroORM, SchemaGenerator, wrap} from "mikro-orm";
 
 import {Person} from "../../src/db/model/Person";
 import {Thing} from "../../src/db/model/Thing";
 
-import config from '../../src/db/cli-config';
+import config, {dbTmpFile} from '../../src/db/cli-config';
 
 describe('creates objects', () => {
 	let createdBy : Person;
@@ -25,6 +25,7 @@ describe('creates objects', () => {
 
 	afterAll(async () => {
 		await orm.close();
+		dbTmpFile.removeCallback();
 	});
 
 	test('creates a thing with createdBy relation', async () => {
@@ -44,7 +45,7 @@ describe('creates objects', () => {
 
 	test('creates a thing with createdBy relation through assign', async () => {
 		const thing = new Thing({id: 'thing:1'}, createdBy);
-		thing.assign({field: 'a field'});
+		wrap(thing).assign({field: 'a field'});
 
 		await orm.em.persistAndFlush(thing);
 		expect(thing.createdBy.id).toEqual('person:1');

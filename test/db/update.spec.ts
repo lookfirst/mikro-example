@@ -1,8 +1,9 @@
 import {MikroORM, SchemaGenerator} from "mikro-orm";
 
-import config from '../../src/db/cli-config';
 import {Person} from "../../src/db/model/Person";
 import {Update} from "../../src/db/model/Update";
+
+import config, {dbTmpFile} from '../../src/db/cli-config';
 
 describe('updates', () => {
 	let orm: MikroORM;
@@ -20,6 +21,7 @@ describe('updates', () => {
 
 	afterAll(async () => {
 		await orm.close();
+		dbTmpFile.removeCallback();
 	});
 
 	test('just does an insert', async () => {

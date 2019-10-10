@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "*",
-    "mikro-orm": "^3.0.0-alpha.22",
+    "mikro-orm": "^3.0.0-dev.2",
     "pg": "*",
     "reflect-metadata": "*",
     "sqlite3": "*",
@@ -14,7 +14,7 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jest --runInBand"
+    "test": "./node_modules/.bin/jest"
   },
   "mikro-orm": {
     "useTsNode": true,
@@ -26,7 +26,9 @@
     "@types/jest": "*",
     "@types/lodash": "*",
     "@types/node": "*",
+    "@types/tmp": "^0.1.0",
     "jest": "*",
+    "tmp": "^0.1.0",
     "ts-jest": "*"
   }
 }

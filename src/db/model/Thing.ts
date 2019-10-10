@@ -2,7 +2,6 @@ import {
 	Collection,
 	Entity,
 	IdentifiedReference,
-	IEntity,
 	ManyToOne,
 	OneToMany,
 	PrimaryKey,
@@ -18,8 +17,8 @@ export class Thing {
 	@PrimaryKey()
 	id: string;
 
-	@Property({nullable: true})
-	field: string;
+	@Property()
+	field?: string;
 
 	@ManyToOne()
 	createdBy: IdentifiedReference<Person, 'id'>;
@@ -37,5 +36,3 @@ export class Thing {
 		this.owner = thing.owner!;
 	}
 }
-
-export interface Thing extends IEntity<string> { }

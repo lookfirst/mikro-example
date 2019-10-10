@@ -1,4 +1,7 @@
 import {EntityCaseNamingStrategy, Options} from "mikro-orm";
+import tmp from 'tmp';
+
+export const dbTmpFile = tmp.fileSync({dir: './build', prefix: 'db-', postfix: '.sqlite'});
 
 export default {
 	baseDir: process.cwd(),
@@ -7,7 +10,7 @@ export default {
 	debug: true,
 	tsNode: true,
 	type: 'sqlite',
-	dbName: './build/test.sqlite',
+	dbName: dbTmpFile.name,
 	cache: { enabled: false },
 	namingStrategy: EntityCaseNamingStrategy,
 } as Options;
