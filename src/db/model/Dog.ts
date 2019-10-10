@@ -1,9 +1,9 @@
-import {Entity, IEntity, ManyToOne, OneToOne, PrimaryKey} from "mikro-orm";
+import {Entity, IdEntity, ManyToOne, OneToOne, PrimaryKey} from "mikro-orm";
 import {Person} from "./Person";
 import {Thing} from "./Thing";
 
 @Entity()
-export class Dog {
+export class Dog implements IdEntity<Dog> {
 	@PrimaryKey()
 	id!: number;
 
@@ -13,5 +13,3 @@ export class Dog {
 	@OneToOne(() => Person, person => person.dog)
 	person!: Person;
 }
-
-export interface Dog extends IEntity<number> { }

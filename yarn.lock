@@ -2668,10 +2668,10 @@ micromatch@^4.0.2:
     braces "^3.0.1"
     picomatch "^2.0.5"
 
-mikro-orm@^3.0.0-dev.2:
-  version "3.0.0-dev.2"
-  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-3.0.0-dev.2.tgz#81b52df9f0e1434101aaa9aa95ae8c8b24efde45"
-  integrity sha512-ZVHVyy9WJQIxPsZkYHNq94sL3aROoqO5AGld70Q32AEc7TD9XFNSd/8qKYXp+b/eUBHLerGiYqtaza0ictrG7A==
+mikro-orm@^3.0.0-dev.4:
+  version "3.0.0-dev.4"
+  resolved "https://registry.yarnpkg.com/mikro-orm/-/mikro-orm-3.0.0-dev.4.tgz#02e2d2b76cf03baedf1d8800a7dacb06266dafd9"
+  integrity sha512-NjvICT1qSb8/eMKMOc+Oa6r9GejsW1fAJq3wGOSfi00J08fE782ez6/e7AokOLlXd9D0jjBa15w3lADjFYZ+BQ==
   dependencies:
     chalk "^2.4.2"
     cli-highlight "^2.1.1"
