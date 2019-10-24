@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "*",
-    "mikro-orm": "^3.0.0-dev.4",
+    "mikro-orm": "next",
     "pg": "*",
     "reflect-metadata": "*",
     "sqlite3": "*",
@@ -14,7 +14,9 @@
     "typescript": "*"
   },
   "scripts": {
-    "test": "./node_modules/.bin/jest"
+    "build": "tsc",
+    "test": "./node_modules/.bin/jest",
+    "ui": "yarn upgradeInteractive"
   },
   "mikro-orm": {
     "useTsNode": true,
@@ -26,9 +28,9 @@
     "@types/jest": "*",
     "@types/lodash": "*",
     "@types/node": "*",
-    "@types/tmp": "^0.1.0",
+    "@types/tmp": "*",
     "jest": "*",
-    "tmp": "^0.1.0",
+    "tmp": "*",
     "ts-jest": "*"
   }
 }
