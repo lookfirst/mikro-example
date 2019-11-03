@@ -4,5 +4,6 @@ Example of setting up [mikro](https://github.com/mikro-orm/mikro-orm) with jest 
 
 ```sh
 yarn
+yarn build
 yarn test
 ```
