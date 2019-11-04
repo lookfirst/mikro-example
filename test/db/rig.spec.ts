@@ -65,7 +65,7 @@ describe('rigs', () => {
 		rigType2.name = 'rigType 2';
 		rigChange.type = rigType2;
 
-		await orm.em.persistAndFlush(rigChange);
+		await orm.em.flush();
 		orm.em.clear();
 
 		const rigType1Db = await orm.em.findOneOrFail(RigType, rigType.id);
