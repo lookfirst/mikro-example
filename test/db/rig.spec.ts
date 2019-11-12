@@ -24,7 +24,7 @@ describe('rigs', () => {
 		dbTmpFile.removeCallback();
 	});
 
-	xtest('creates orderBy correctly', async () => {
+	test('creates orderBy correctly', async () => {
 		const rig1 = new Rig();
 
 		const rigType = new RigType();
@@ -37,12 +37,12 @@ describe('rigs', () => {
 		await orm.em.persistAndFlush(rig1);
 		orm.em.clear();
 
-		const result = await orm.em.findAndCount(Rig, {}, {
+		const result = await orm.em.find(Rig, {}, {
 			orderBy: {type: 'asc'},
 			populate: true,
 		});
 
-		console.log(result);
+		expect(result[0].type.name).toBe(rigType.name);
 	});
 
 	test('unit of works... so nice!', async () => {

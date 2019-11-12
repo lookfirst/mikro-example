@@ -5,7 +5,7 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "*",
-    "mikro-orm": "next",
+    "mikro-orm": "^3.0.0-alpha.37",
     "pg": "*",
     "reflect-metadata": "*",
     "sqlite3": "*",
