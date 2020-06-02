@@ -25,10 +25,16 @@
     ]
   },
   "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "*",
+    "@typescript-eslint/parser": "*",
+    "eslint": "*",
+    "eslint-config-prettier": "*",
+    "eslint-plugin-prettier": "*",
     "@types/jest": "*",
     "@types/lodash": "*",
     "@types/node": "*",
     "@types/tmp": "*",
+    "prettier": "*",
     "jest": "*",
     "tmp": "*",
     "ts-jest": "*"
