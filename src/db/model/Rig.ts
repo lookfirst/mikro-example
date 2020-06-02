@@ -1,8 +1,8 @@
-import {Entity, IdEntity, ManyToOne, PrimaryKey} from "mikro-orm";
+import {Entity, ManyToOne, PrimaryKey} from "mikro-orm";
 import {RigType} from "./RigType";
 
 @Entity()
-export class Rig implements IdEntity<Rig>{
+export class Rig {
 	@PrimaryKey()
 	id!: number;
 

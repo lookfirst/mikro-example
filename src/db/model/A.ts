@@ -1,11 +1,11 @@
-import {Entity, IdEntity, OneToOne, PrimaryKey} from "mikro-orm";
+import {Entity, OneToOne, PrimaryKey} from "mikro-orm";
 import {B} from "./B";
 
 @Entity()
-export class A implements IdEntity<A>{
+export class A {
 	@PrimaryKey()
 	id!: number;
 
-	@OneToOne(() => B, b => b.a, {owner: true})
-	b!: B;
+	@OneToOne(() => B, b => b.a, {owner: true, nullable: true})
+	b?: B | null;
 }

@@ -47,31 +47,32 @@ describe('rigs', () => {
 
 	test('unit of works... so nice!', async () => {
 		const rig1 = new Rig();
-		const rigType = new RigType();
-		rigType.id = 1;
-		rigType.name = 'rigType 1';
+		const rigType1 = new RigType();
+		rigType1.id = 1;
+		rigType1.name = 'rigType 1';
 
 		rig1.id = 1;
-		rig1.type = rigType;
+		rig1.type = rigType1;
 
 		await orm.em.persistAndFlush(rig1);
 		orm.em.clear();
 
-		const rigChange = await orm.em.findOneOrFail(Rig, rig1.id);
-		rigChange.type.name = 'removed';
+		const rigChangeRig1 = await orm.em.findOneOrFail(Rig, rig1.id);
 
 		const rigType2 = new RigType();
 		rigType2.id = 2;
 		rigType2.name = 'rigType 2';
-		rigChange.type = rigType2;
 
-		await orm.em.flush();
+		rigChangeRig1.type = rigType2;
+		rigChangeRig1.type.name = 'removed';
+
+		await orm.em.persistAndFlush([rigType2, rigChangeRig1]);
 		orm.em.clear();
 
-		const rigType1Db = await orm.em.findOneOrFail(RigType, rigType.id);
-		expect(rigType1Db.name).toBe('removed');
+		const rigType1Db = await orm.em.findOneOrFail(RigType, rigType1.id);
+		expect(rigType1Db.name).toBe('rigType 1');
 
 		const rigAgain = await orm.em.findOneOrFail(Rig, rig1.id, {populate: true});
-		expect(rigAgain.type.name).toBe('rigType 2');
+		expect(rigAgain.type.name).toBe('removed');
 	});
 });

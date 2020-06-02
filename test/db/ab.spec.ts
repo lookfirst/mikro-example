@@ -73,4 +73,38 @@ describe('creates and selects', () => {
 
 		await orm.em.persistAndFlush(foundA);
 	});
+
+
+	test('move b from a1 to a2', async () => {
+		const a1 = new A();
+		a1.id = 1;
+		const a2 = new A();
+		a2.id = 2;
+
+		const b = new B();
+		b.id = 1;
+
+		a1.b = b;
+		await orm.em.persistAndFlush([a1, b, a2]);
+		orm.em.clear();
+
+		const foundA2 = await orm.em.findOneOrFail(A, a2.id, {populate: true});
+		const foundA1 = await orm.em.findOneOrFail(A, a1.id, {populate: true});
+
+		foundA2.b = foundA1.b;
+		foundA1.b = null;
+
+		expect(foundA2.b).toBeDefined();
+		expect(foundA1.b).toBeNull();
+
+		await orm.em.persistAndFlush([foundA1, foundA2]);
+
+		orm.em.clear();
+
+		const foundA11 = await orm.em.findOneOrFail(A, a1.id, {populate: true});
+		const foundA22 = await orm.em.findOneOrFail(A, a2.id, {populate: true});
+
+		expect(foundA22.b).toBeDefined();
+		expect(foundA11.b).toBeNull();
+	});
 });
