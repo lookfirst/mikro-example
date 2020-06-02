@@ -55,4 +55,35 @@ describe('tests rig2', () => {
 		expect(rig1db.gpus.length).toBe(1);
 		expect(rig1db.gpus[0].id).toBe(2);
 	});
+
+	test('creates and updates without function', async () => {
+		let rig1 = new Rig2();
+		const gpu1 = new Gpu();
+		rig1.gpus.add(gpu1);
+		await orm.em.persistAndFlush(rig1);
+
+		orm.em.clear();
+
+		rig1 = await orm.em.findOneOrFail(Rig2, rig1.id, true);
+
+		rig1.gpus.remove(gpu1);
+		expect(rig1.gpus.length).toBe(0);
+
+		const gpu2 = new Gpu();
+		rig1.gpus.add(gpu2);
+		expect(rig1.gpus.length).toBe(1);
+
+		orm.em.persistLater(rig1);
+
+		expect(rig1.gpus.length).toBe(1);
+		expect(rig1.gpus[0].id).toBeUndefined();
+
+		await orm.em.flush();
+
+		orm.em.clear();
+
+		const rig1db = await orm.em.findOneOrFail(Rig2, rig1.id, true);
+		expect(rig1db.gpus.length).toBe(1);
+		expect(rig1db.gpus[0].id).toBe(2);
+	});
 });
