@@ -25,9 +25,11 @@ describe('tests rig2', () => {
 
 	function addRemoveGpus(rig: Rig2, gpu1: Gpu) {
 		rig.gpus.remove(gpu1);
+		expect(rig.gpus.length).toBe(0);
 
 		const gpu2 = new Gpu();
 		rig.gpus.add(gpu2);
+		expect(rig.gpus.length).toBe(1);
 
 		orm.em.persistLater(rig);
 	}
@@ -42,6 +44,8 @@ describe('tests rig2', () => {
 
 		rig1 = await orm.em.findOneOrFail(Rig2, rig1.id, true);
 		addRemoveGpus(rig1, gpu1);
+		expect(rig1.gpus.length).toBe(1);
+		expect(rig1.gpus[0].id).toBeUndefined();
 
 		await orm.em.flush();
 
