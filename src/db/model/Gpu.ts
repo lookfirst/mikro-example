@@ -1,4 +1,4 @@
-import {Entity, ManyToOne, PrimaryKey} from "mikro-orm";
+import { Entity, ManyToOne, PrimaryKey } from 'mikro-orm';
 import { Rig2 } from './Rig2';
 
 @Entity()
@@ -7,5 +7,5 @@ export class Gpu {
 	id!: number;
 
 	@ManyToOne()
-	rig?: Rig2;
+	rig!: Rig2;
 }
