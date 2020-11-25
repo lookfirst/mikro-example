@@ -1602,10 +1602,10 @@ eslint-config-prettier@*:
   dependencies:
     get-stdin "^6.0.0"
 
-eslint-plugin-autofix@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/eslint-plugin-autofix/-/eslint-plugin-autofix-1.0.0.tgz#4efc1bbfbf6138d5cc83efd1564ff048a372f2f9"
-  integrity sha512-cgZhGQB2xa3ZS9fqSz3EumqOFVpsV7vy+YQJvOF7PUAQ7T0dIYfoHY2+DtjFq5vaXj2cSaCPXw/YXI34ANLa9A==
+eslint-plugin-autofix@*:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/eslint-plugin-autofix/-/eslint-plugin-autofix-1.0.2.tgz#9283c56539b1fe536bf2c88b3150e2519240b7df"
+  integrity sha512-nEYdYSN73V/ZT6okB6WGzLzlV7xlLfikmjEgWaCRO2gCdDsY0QKhc2u0H0p/yyHXJSC1hMrqBDwkLWt6knuTdw==
   dependencies:
     eslint-rule-composer "^0.3.0"
     espree "^6.1.2"
@@ -2279,9 +2279,9 @@ has-values@^1.0.0:
     kind-of "^4.0.0"
 
 highlight.js@^9.6.0:
-  version "9.16.2"
-  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.16.2.tgz#68368d039ffe1c6211bcc07e483daf95de3e403e"
-  integrity sha512-feMUrVLZvjy0oC7FVJQcSQRqbBq9kwqnYE4+Kj9ZjbHh3g+BisiPgF49NyQbVLNdrL/qqZr3Ca9yOKwgn2i/tw==
+  version "9.18.5"
+  resolved "https://registry.yarnpkg.com/highlight.js/-/highlight.js-9.18.5.tgz#d18a359867f378c138d6819edfc2a8acd5f29825"
+  integrity sha512-a5bFyofd/BHCX52/8i8uJkjr9DYwXIPnM/plwI6W7ezItLGqzt7X2G2nXuYSfsIJdkwwj/g9DG1LkcGJI/dDoA==
 
 homedir-polyfill@^1.0.1:
   version "1.0.3"
